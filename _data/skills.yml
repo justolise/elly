@@ -13,14 +13,17 @@
     - "Kotlin"
     - "Jetpack Compose"
     - "Git & GitHub"
+    - "Docker"
     - "Zustand"
 
 - title: "Product context"
   items:
     - "M-Pesa integration"
     - "KCSE / CBC curricula"
-    - "Multi-agent AI"
     - "Africa's Talking"
+    - "Agentic AI"
+    - "AI Automations"
+    - "Prompt Engineering"
 
 - title: "Design"
   items:
