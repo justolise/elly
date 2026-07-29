@@ -10,12 +10,8 @@ email: "onungaelly@gmail.com"
 github_username: justolise
 
 # ── Theme ─────────────────────────────────────────────────────────
-# Cayman is a clean GitHub-hosted theme; it won't override index.html
-# because that file has no Jekyll front matter (--- blocks).
-# It does style any future .md pages you add.
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-  - jekyll-remote-theme
+# We are using our own custom layouts and styling, so no remote
+# theme is required here.
 
 # ── Build settings ────────────────────────────────────────────────
 # Tell Jekyll to leave our existing HTML/CSS/JS exactly as-is.

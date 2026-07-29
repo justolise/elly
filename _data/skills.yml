@@ -1,0 +1,29 @@
+- title: "Core stack"
+  items:
+    - "TypeScript"
+    - "React"
+    - "TanStack Start"
+    - "Supabase"
+    - "Tailwind CSS"
+    - "Vercel"
+
+- title: "Also working with"
+  items:
+    - "Python"
+    - "Kotlin"
+    - "Jetpack Compose"
+    - "Git & GitHub"
+    - "Zustand"
+
+- title: "Product context"
+  items:
+    - "M-Pesa integration"
+    - "KCSE / CBC curricula"
+    - "Multi-agent AI"
+    - "Africa's Talking"
+
+- title: "Design"
+  items:
+    - "Brand identity"
+    - "Logo design"
+    - "UI/UX wireframing"

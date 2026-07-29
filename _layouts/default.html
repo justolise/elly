@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+</head>
+
+<body>
+<div class="shell">
+
+    <!-- HEADER -->
+    <header class="site">
+        <div class="header-inner">
+            <div class="wordmark">Elly<span class="dot">.</span>dev</div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu ▾</button>
+            <nav class="tabs" id="tabs">
+                <button data-page="home" class="active" id="nav-home">Home</button>
+                <button data-page="projects" id="nav-projects">Projects</button>
+                <button data-page="about" id="nav-about">About</button>
+                <button data-page="contact" id="nav-contact">Contact</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer class="site">
+        <span>© 2026 {{ site.author }}</span>
+        <span>Nairobi, Kenya · Built with intent</span>
+    </footer>
+
+</div><!-- /.shell -->
+
+<script src="{{ '/main.js' | relative_url }}"></script>
+</body>
+</html>
