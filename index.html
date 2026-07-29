@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onunga Elly — Software Developer</title>
+    <meta name="description"
+        content="Software developer and student building edtech and SaaS products for the East African market. Currently building GilaniAI and Gilani ERP.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* DESIGN TOKENS */
+        :root {
+            --bg:        #0a0a0b;
+            --bg-2:      #111113;
+            --bg-3:      #1a1a1e;
+            --border:    rgba(255,255,255,0.07);
+            --border-hi: rgba(255,255,255,0.13);
+            --text:      #f0ede8;
+            --text-2:    #8a8780;
+            --text-3:    #55524d;
+            --accent:    #d4a853;
+            --accent-2:  #a07840;
+            --green:     #4ade80;
+            --green-dim: rgba(74,222,128,0.08);
+            --font-sans:  'Inter', -apple-system, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-mono:  'JetBrains Mono', monospace;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --r: 10px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; color-scheme: dark; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* LAYOUT */
+        .shell {
+            position: relative;
+            z-index: 1;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* HEADER */
+        header.site {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            background: rgba(10,10,11,0.80);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .wordmark {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            letter-spacing: 0.01em;
+        }
+
+        .wordmark .dot { color: var(--accent); }
+
+        nav.tabs { display: flex; gap: 2px; }
+
+        nav.tabs button {
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 500;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-2);
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: color 0.15s ease, background 0.15s ease;
+            position: relative;
+        }
+
+        nav.tabs button:hover { color: var(--text); background: var(--bg-3); }
+
+        nav.tabs button.active { color: var(--text); background: var(--bg-3); }
+
+        nav.tabs button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-hi);
+            border-radius: 6px;
+            padding: 7px 12px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-2);
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            nav.tabs { display: none; }
+            .menu-toggle { display: block; }
+            nav.tabs.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                right: 24px;
+                top: 72px;
+                background: var(--bg-2);
+                border: 1px solid var(--border-hi);
+                border-radius: var(--r);
+                padding: 8px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+                min-width: 160px;
+                z-index: 200;
+            }
+        }
+
+        /* PAGE TRANSITIONS */
+        main { padding: 0; }
+
+        section.page { display: none; animation: pageIn 0.4s var(--ease-out); }
+        section.page.active { display: block; }
+
+        @keyframes pageIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SHARED */
+        .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+
+        .label::before {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background: var(--text-3);
+            flex-shrink: 0;
+        }
+
+        /* BADGES */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 20px;
+            border: 1px solid;
+        }
+
+        .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; }
+
+        .badge.live { color: var(--green); border-color: rgba(74,222,128,0.2); background: var(--green-dim); }
+        .badge.live::before { background: var(--green); box-shadow: 0 0 6px var(--green); }
+        .badge.progress { color: var(--accent); border-color: rgba(212,168,83,0.2); background: rgba(212,168,83,0.06); }
+        .badge.progress::before { background: var(--accent); }
+        .badge.explore { color: var(--text-2); border-color: var(--border); background: var(--bg-3); }
+        .badge.explore::before { background: var(--text-3); }
+
+        /* TAGS */
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--text-3);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 11px 22px;
+            border-radius: 7px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform 0.15s var(--ease-out), box-shadow 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
+            white-space: nowrap;
+        }
+
+        .btn:hover { transform: translateY(-2px); }
+        .btn.primary { background: var(--text); color: var(--bg); }
+        .btn.primary:hover { box-shadow: 0 8px 24px rgba(240,237,232,0.15); }
+        .btn.ghost { border-color: var(--border-hi); color: var(--text-2); }
+        .btn.ghost:hover { background: var(--bg-3); color: var(--text); }
+
+        /* HERO */
+        .hero { padding: 88px 0 64px; }
+        .hero .label { margin-bottom: 28px; }
+
+        .hero-name {
+            font-family: var(--font-serif);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+            font-weight: 400;
+        }
+
+        .hero-name em { font-style: italic; color: var(--accent); }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            max-width: 50ch;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 72px; }
+
+        /* STACK STRIP */
+        .stack-strip {
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 72px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .stack-strip .label { margin-right: 4px; }
+
+        .chip {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-3);
+            padding: 5px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+            background: var(--bg-2);
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        /* PREVIEW CARDS */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 80px;
+        }
+
+        .preview-card {
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 28px;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s var(--ease-out), box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(212,168,83,0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .preview-card:hover { border-color: var(--border-hi); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+        .preview-card:hover::before { opacity: 1; }
+
+        .card-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .preview-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .preview-card p { font-size: 0.88rem; color: var(--text-2); line-height: 1.65; }
+
+        .card-arrow {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: var(--text-3);
+            font-size: 1rem;
+            transition: color 0.15s, transform 0.2s var(--ease-out);
+        }
+
+        .preview-card:hover .card-arrow { color: var(--accent); transform: translate(2px,-2px); }
+
+        /* PROJECTS PAGE */
+        .page-head { padding: 64px 0 40px; }
+        .page-head .label { margin-bottom: 20px; }
+
+        .page-head h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 14px;
+        }
+
+        .page-head p { font-size: 0.95rem; color: var(--text-2); max-width: 54ch; line-height: 1.7; }
+
+        /* PROJECT LIST */
+        .project-list { margin-bottom: 80px; }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 0 32px;
+            padding: 36px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-item:last-child { border-bottom: 1px solid var(--border); }
+
+        .proj-num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-3); padding-top: 5px; }
+
+        .proj-title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+
+        .proj-title-row h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .proj-desc { font-size: 0.92rem; color: var(--text-2); max-width: 60ch; line-height: 1.7; margin-bottom: 16px; }
+
+        .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+
+        .proj-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-2);
+            border-bottom: 1px solid var(--border-hi);
+            padding-bottom: 1px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .proj-link:hover { color: var(--accent); border-color: var(--accent); }
+
+        @media (max-width: 580px) {
+            .project-item { grid-template-columns: 1fr; }
+            .proj-num { display: none; }
+        }
+
+        /* ABOUT PAGE */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 64px;
+            padding-bottom: 80px;
+        }
+
+        @media (max-width: 780px) { .about-layout { grid-template-columns: 1fr; gap: 40px; } }
+
+        .about-body p { font-size: 0.95rem; color: var(--text-2); line-height: 1.75; margin-bottom: 18px; max-width: 58ch; }
+        .about-body p strong { color: var(--text); font-weight: 500; }
+        .about-body code { font-family: var(--font-mono); font-size: 0.82em; background: var(--bg-3); color: var(--accent); padding: 1px 6px; border-radius: 4px; }
+
+        /* SKILLS PANEL */
+        .skills-panel { display: flex; flex-direction: column; gap: 28px; }
+
+        .skill-group-title {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 12px;
+        }
+
+        .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        .skill-pill {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-2);
+            background: var(--bg-3);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 5px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .skill-pill:hover { color: var(--text); border-color: var(--border-hi); }
+
+        /* CONTACT PAGE */
+        .contact-wrap { padding-bottom: 80px; }
+
+        .contact-lede {
+            font-family: var(--font-serif);
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 400;
+            line-height: 1.2;
+            max-width: 22ch;
+            margin-bottom: 16px;
+        }
+
+        .contact-sub { font-size: 0.95rem; color: var(--text-2); max-width: 46ch; line-height: 1.7; margin-bottom: 40px; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 24px;
+            min-height: 140px;
+            transition: border-color 0.2s, transform 0.2s var(--ease-out), box-shadow 0.2s;
+        }
+
+        .contact-card:hover { border-color: var(--border-hi); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.35); }
+
+        .contact-type { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+        .contact-value { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; color: var(--text); }
+
+        .contact-arrow {
+            font-size: 1rem;
+            color: var(--text-3);
+            align-self: flex-end;
+            margin-top: 16px;
+            transition: color 0.15s, transform 0.2s var(--ease-out);
+        }
+
+        .contact-card:hover .contact-arrow { color: var(--accent); transform: translate(2px,-2px); }
+
+        /* FOOTER */
+        footer.site {
+            border-top: 1px solid var(--border);
+            padding: 28px 0 36px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        footer.site span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-3); }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+
+<body>
+<div class="shell">
+
+    <!-- HEADER -->
+    <header class="site">
+        <div class="header-inner">
+            <div class="wordmark">Elly<span class="dot">.</span>dev</div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu ▾</button>
+            <nav class="tabs" id="tabs">
+                <button data-page="home" class="active" id="nav-home">Home</button>
+                <button data-page="projects" id="nav-projects">Projects</button>
+                <button data-page="about" id="nav-about">About</button>
+                <button data-page="contact" id="nav-contact">Contact</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HOME -->
+        <section class="page active" id="page-home">
+            <div class="hero">
+                <div class="label">Nairobi, Kenya</div>
+                <h1 class="hero-name">
+                    Building tools that make<br><em>learning</em> work.
+                </h1>
+                <p class="hero-sub">
+                    I'm Elly — a software developer and student focused on edtech and
+                    SaaS products for the East African market. Currently building GilaniAI,
+                    an AI tutoring platform, and Gilani, a school management system.
+                </p>
+                <div class="hero-actions">
+                    <a href="#" class="btn primary" data-nav="projects">View projects →</a>
+                    <a href="https://github.com/justolise" class="btn ghost" target="_blank" rel="noopener">GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="stack-strip">
+                <span class="label">Stack</span>
+                <span class="chip">TypeScript</span>
+                <span class="chip">React</span>
+                <span class="chip">TanStack Start</span>
+                <span class="chip">Supabase</span>
+                <span class="chip">Tailwind CSS</span>
+                <span class="chip">Vercel</span>
+                <span class="chip">M-Pesa API</span>
+                <span class="chip">Kotlin</span>
+            </div>
+
+            <div class="section-header">
+                <span class="section-title">Selected work</span>
+                <a href="#" class="label" data-nav="projects" style="cursor:pointer;gap:6px;">All projects →</a>
+            </div>
+
+            <div class="preview-grid">
+                <div class="preview-card reveal" data-nav="projects" id="card-gilaniai">
+                    <span class="card-arrow">↗</span>
+                    <div class="card-eyebrow">Live product</div>
+                    <h3>GilaniAI</h3>
+                    <p>AI tutoring platform helping Kenyan students study for KCSE and CBC curricula, with M-Pesa billing built in.</p>
+                </div>
+                <div class="preview-card reveal" data-nav="projects" id="card-shulio" style="transition-delay:.07s">
+                    <span class="card-arrow">↗</span>
+                    <div class="card-eyebrow">Brand + product</div>
+                    <h3>Shulio</h3>
+                    <p>An edtech brand and school product built around a distinct visual identity — forward motion by design.</p>
+                </div>
+                <div class="preview-card reveal" data-nav="projects" id="card-gilani-erp" style="transition-delay:.14s">
+                    <span class="card-arrow">↗</span>
+                    <div class="card-eyebrow">In development</div>
+                    <h3>Gilani ERP</h3>
+                    <p>Full school management platform — ERP, SIS, and multi-tenant SaaS architecture for East African schools.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="page" id="page-projects">
+            <div class="page-head">
+                <div class="label">Projects</div>
+                <h2>Products built for real classrooms.</h2>
+                <p>Each project solves a problem I've watched Kenyan students and schools actually run into — from studying for national exams to managing school operations without spreadsheets.</p>
+            </div>
+
+            <div class="project-list">
+                <div class="project-item reveal" id="proj-gilaniai">
+                    <div class="proj-num">01</div>
+                    <div class="proj-body">
+                        <div class="proj-title-row">
+                            <h3>GilaniAI</h3>
+                            <span class="badge live">Live</span>
+                        </div>
+                        <p class="proj-desc">An AI tutoring platform for Kenyan students, aligned to the KCSE and CBC curricula. Includes quiz generation, speech-to-text and text-to-speech, LaTeX/KaTeX rendering for math, a Pomodoro study timer, PDF/Word export, and teacher escalation with email notifications. Billing runs on M-Pesa tokens with pay-as-you-go top-ups and Africa's Talking SMS receipts.</p>
+                        <div class="proj-tags">
+                            <span class="tag">TanStack Start</span>
+                            <span class="tag">Supabase</span>
+                            <span class="tag">Groq → OpenAI → Gemini</span>
+                            <span class="tag">M-Pesa</span>
+                            <span class="tag">Africa's Talking</span>
+                        </div>
+                        <a class="proj-link" href="https://gilaniai.site" target="_blank" rel="noopener">gilaniai.site ↗</a>
+                    </div>
+                </div>
+
+                <div class="project-item reveal" id="proj-shulio">
+                    <div class="proj-num">02</div>
+                    <div class="proj-body">
+                        <div class="proj-title-row">
+                            <h3>Shulio</h3>
+                            <span class="badge progress">In progress</span>
+                        </div>
+                        <p class="proj-desc">An edtech brand and school product built around a distinct visual identity — a wordmark with an arrow piercing straight through it, signaling forward motion and precision. Design and product work are running in parallel.</p>
+                        <div class="proj-tags">
+                            <span class="tag">Brand identity</span>
+                            <span class="tag">Logo design</span>
+                            <span class="tag">Edtech</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal" id="proj-gilani-sis">
+                    <div class="proj-num">03</div>
+                    <div class="proj-body">
+                        <div class="proj-title-row">
+                            <h3>Gilani ERP / SIS</h3>
+                            <span class="badge progress">In development</span>
+                        </div>
+                        <p class="proj-desc">A broader school management SaaS platform bringing ERP and student information systems together under one umbrella brand — "Gilani" — with a wildcard subdomain architecture planned under gilani.school, so each school gets its own space on shared infrastructure.</p>
+                        <div class="proj-tags">
+                            <span class="tag">Multi-tenant SaaS</span>
+                            <span class="tag">Supabase RLS</span>
+                            <span class="tag">School operations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal" id="proj-realestate">
+                    <div class="proj-num">04</div>
+                    <div class="proj-body">
+                        <div class="proj-title-row">
+                            <h3>Real Estate ERP</h3>
+                            <span class="badge explore">Exploratory</span>
+                        </div>
+                        <p class="proj-desc">An early-stage exploration into an ERP for real estate operations, paired with an Android front end — the project that led me into an 8-week Kotlin and Jetpack Compose learning roadmap.</p>
+                        <div class="proj-tags">
+                            <span class="tag">Kotlin</span>
+                            <span class="tag">Jetpack Compose</span>
+                            <span class="tag">Android</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="page" id="page-about">
+            <div class="page-head">
+                <div class="label">About</div>
+                <h2>Developer, student,<br>and occasional designer.</h2>
+            </div>
+
+            <div class="about-layout">
+                <div class="about-body">
+                    <p>I'm based in Kenya, working across software development and my studies, usually with more than one project running at once. My focus is <strong>edtech and SaaS products built specifically for the Kenyan and East African market</strong> — which means designing around things like M-Pesa payments, the KCSE and CBC curricula, and Swahili-language content from the start, not bolting them on later.</p>
+                    <p>Most of my recent work has gone into <strong>GilaniAI</strong>, an AI tutoring platform — everything from security hardening (row-level security across every table, UUID validation, rate limiting, prompt injection sanitization) to features students actually ask for, like speech-to-text, math rendering, and realtime notifications. I refactored the codebase from one large monolithic route file into modular components as it grew.</p>
+                    <p>My workflow leans on small, verifiable changes — targeted terminal patches, careful <code>grep</code> verification, TypeScript checks before anything ships. I recently did a full migration off Windows to a customized Ubuntu setup with GNOME and Zsh.</p>
+                    <p>Outside of code, I care about how things look — logo work, brand systems, and UI design show up alongside the engineering, not separately from it.</p>
+                </div>
+
+                <div class="skills-panel reveal">
+                    <div class="skill-group">
+                        <div class="skill-group-title">Core stack</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">TypeScript</span>
+                            <span class="skill-pill">React</span>
+                            <span class="skill-pill">TanStack Start</span>
+                            <span class="skill-pill">Supabase</span>
+                            <span class="skill-pill">Tailwind CSS</span>
+                            <span class="skill-pill">Vercel</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-group-title">Also working with</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">Kotlin</span>
+                            <span class="skill-pill">Jetpack Compose</span>
+                            <span class="skill-pill">Git & GitHub</span>
+                            <span class="skill-pill">Zustand</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-group-title">Product context</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">M-Pesa integration</span>
+                            <span class="skill-pill">KCSE / CBC curricula</span>
+                            <span class="skill-pill">Multi-agent AI</span>
+                            <span class="skill-pill">Africa's Talking</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-group-title">Design</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Brand identity</span>
+                            <span class="skill-pill">Logo design</span>
+                            <span class="skill-pill">UI/UX wireframing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="page" id="page-contact">
+            <div class="page-head">
+                <div class="label">Contact</div>
+            </div>
+
+            <div class="contact-wrap">
+                <h2 class="contact-lede">Let's build something worth using.</h2>
+                <p class="contact-sub">Open to conversations about edtech, SaaS, or anything Kenya-market software. The fastest way to reach me is GitHub or email.</p>
+
+                <div class="contact-grid">
+                    <a class="contact-card reveal" href="https://github.com/justolise" target="_blank" rel="noopener" id="contact-github">
+                        <div>
+                            <div class="contact-type">GitHub</div>
+                            <div class="contact-value">justolise</div>
+                        </div>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+                    <a class="contact-card reveal" href="mailto:onungaelly@gmail.com" id="contact-email" style="transition-delay:.07s">
+                        <div>
+                            <div class="contact-type">Email</div>
+                            <div class="contact-value">onungaelly@gmail.com</div>
+                        </div>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+                    <a class="contact-card reveal" href="https://wa.me/254710297603" target="_blank" rel="noopener" id="contact-whatsapp" style="transition-delay:.14s">
+                        <div>
+                            <div class="contact-type">WhatsApp</div>
+                            <div class="contact-value">+254 710 297 603</div>
+                        </div>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+                    <a class="contact-card reveal" href="https://gilaniai.site" target="_blank" rel="noopener" id="contact-product" style="transition-delay:.21s">
+                        <div>
+                            <div class="contact-type">Live product</div>
+                            <div class="contact-value">gilaniai.site</div>
+                        </div>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site">
+        <span>© 2026 Onunga Elly</span>
+        <span>Nairobi, Kenya · Built with intent</span>
+    </footer>
+
+</div><!-- /.shell -->
+
+<script>
+    /* Navigation */
+    const pages      = document.querySelectorAll('.page');
+    const tabBtns    = document.querySelectorAll('nav.tabs button');
+    const menuToggle = document.getElementById('menuToggle');
+    const tabs       = document.getElementById('tabs');
+
+    function showPage(name) {
+        pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
+        tabBtns.forEach(b => b.classList.toggle('active', b.dataset.page === name));
+        tabs.classList.remove('open');
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        history.replaceState(null, '', '#' + name);
+        setTimeout(runReveal, 50);
+    }
+
+    tabBtns.forEach(b => b.addEventListener('click', () => showPage(b.dataset.page)));
+    document.querySelectorAll('[data-nav]').forEach(el => {
+        el.addEventListener('click', e => { e.preventDefault(); showPage(el.dataset.nav); });
+    });
+    menuToggle.addEventListener('click', () => tabs.classList.toggle('open'));
+
+    const initial = location.hash.replace('#', '') || 'home';
+    if (document.getElementById('page-' + initial)) showPage(initial);
+
+    /* Scroll-reveal */
+    function runReveal() {
+        const els = document.querySelectorAll('.page.active .reveal:not(.visible)');
+        if (!els.length) return;
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        els.forEach(el => observer.observe(el));
+    }
+    runReveal();
+
+    /* Card spotlight */
+    document.querySelectorAll('.preview-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+            card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+        });
+    });
+</script>
+
+</body>
+</html>
