@@ -235,9 +235,22 @@ section.page.active { display: block; }
 .btn.ghost { border-color: var(--border-hi); color: var(--text-2); }
 .btn.ghost:hover { background: var(--bg-3); color: var(--text); }
 
-/* ── HOME ───────────────────────────────────────────────────────── */
+/* ── HERO ───────────────────────────────────────────────────────── */
 .hero { padding: 88px 0 64px; }
-.hero .label { margin-bottom: 28px; }
+.hero-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.hero-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border-hi);
+}
+.hero .label { margin: 0; }
 
 .hero-name {
     font-family: var(--font-serif);
