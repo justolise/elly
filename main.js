@@ -48,7 +48,7 @@ function runReveal() {
 runReveal();
 
 /* ── Card spotlight (mouse-follow radial glow) ──────────────────── */
-document.querySelectorAll('.preview-card').forEach(card => {
+document.querySelectorAll('.preview-card, .contact-card').forEach(card => {
     card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         card.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100) + '%');
