@@ -38,7 +38,8 @@ layout: default
 
             <div class="preview-grid">
                 {% for project in site.data.projects limit:3 %}
-                <div class="preview-card reveal" data-nav="projects" id="card-{{ project.id }}"{% if project.delay != "" %} style="transition-delay:{{ project.delay }}"{% endif %}>
+                {% capture style_attr %}style="transition-delay:{{ project.delay }}"{% endcapture %}
+                <div class="preview-card reveal" data-nav="projects" id="card-{{ project.id }}"{% if project.delay != blank %} {{ style_attr }}{% endif %}>
                     <span class="card-arrow">↗</span>
                     <div class="card-eyebrow">{{ project.eyebrow }}</div>
                     <h3>{{ project.title }}</h3>
