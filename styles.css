@@ -614,7 +614,18 @@ footer.site span { font-family: var(--font-mono); font-size: 0.72rem; color: var
     
     /* Hero & Headers */
     .hero { padding: 48px 0 32px; }
-    .hero-actions { margin-bottom: 48px; }
+    .hero-actions {
+        margin-bottom: 48px;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+    .hero-actions .btn {
+        padding: 9px 14px;
+        font-size: 0.78rem;
+        white-space: nowrap;
+        flex: 1;
+        justify-content: center;
+    }
     .page-head { padding: 32px 0 24px; }
     
     /* Strips & Grids */
