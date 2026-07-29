@@ -4,8 +4,8 @@
   badge_class: "live"
   badge_text: "Live"
   eyebrow: "Live product"
-  short_desc: "AI tutoring platform helping Kenyan students study for KCSE and CBC curricula, with M-Pesa billing built in."
-  desc: "An AI tutoring platform for Kenyan students, aligned to the KCSE and CBC curricula. Includes quiz generation, speech-to-text and text-to-speech, LaTeX/KaTeX rendering for math, a Pomodoro study timer, PDF/Word export, and teacher escalation with email notifications. Billing runs on M-Pesa tokens with pay-as-you-go top-ups and Africa's Talking SMS receipts."
+  short_desc: "AI tutoring platform helping students study for KCSE and CBC curricula, with M-Pesa billing built in."
+  desc: "An AI tutoring platform for students, aligned with the KCSE and CBC curricula. Includes quiz generation, speech-to-text and text-to-speech, LaTeX/KaTeX rendering for math, a Pomodoro study timer, PDF/Word export, and teacher escalation with email notifications. Billing runs on M-Pesa tokens with pay-as-you-go top-ups and Africa's Talking SMS receipts."
   tags:
     - "TanStack Start"
     - "Supabase"
@@ -36,8 +36,8 @@
   badge_class: "progress"
   badge_text: "In development"
   eyebrow: "In development"
-  short_desc: "Full school management platform — ERP, SIS, and multi-tenant SaaS architecture for East African schools."
-  desc: "A broader school management SaaS platform bringing ERP and student information systems together under one umbrella brand — \"Gilani\" — with a wildcard subdomain architecture planned under gilani.school, so each school gets its own space on shared infrastructure."
+  short_desc: "Full school management platform — ERP, SIS, and multi-tenant SaaS architecture for schools."
+  desc: "A broader school management SaaS platform bringing ERP and Student Information Systems (SIS) together under one umbrella brand — \"Gilani\" — with a wildcard subdomain architecture planned under gilani.school, so each school gets its own space on shared infrastructure."
   tags:
     - "Multi-tenant SaaS"
     - "Supabase RLS"

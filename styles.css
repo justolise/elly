@@ -541,3 +541,43 @@ footer.site span { font-family: var(--font-mono); font-size: 0.72rem; color: var
 }
 
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── FLOATING CONTACT BUTTONS ───────────────────────────────────── */
+.floating-contact {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+}
+
+.fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: var(--text);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transition: transform 0.2s var(--ease-out), background 0.2s, color 0.2s;
+}
+
+.fab:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: var(--bg-3);
+}
+
+.email-fab:hover { color: #facc15; border-color: rgba(250, 204, 21, 0.3); }
+.wa-fab:hover { color: #25D366; border-color: rgba(37, 211, 102, 0.3); }
+
+@media (max-width: 600px) {
+    .floating-contact {
+        bottom: 16px;
+        right: 16px;
+    }
+}
