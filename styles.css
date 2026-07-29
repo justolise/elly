@@ -575,7 +575,27 @@ footer.site span { font-family: var(--font-mono); font-size: 0.72rem; color: var
 .email-fab:hover { color: #facc15; border-color: rgba(250, 204, 21, 0.3); }
 .wa-fab:hover { color: #25D366; border-color: rgba(37, 211, 102, 0.3); }
 
+/* ── MOBILE RESPONSIVENESS (Global Tweaks) ──────────────────────── */
 @media (max-width: 600px) {
+    /* Layout */
+    .shell { padding: 0 20px; }
+    
+    /* Hero & Headers */
+    .hero { padding: 48px 0 32px; }
+    .hero-actions { margin-bottom: 48px; }
+    .page-head { padding: 32px 0 24px; }
+    
+    /* Strips & Grids */
+    .stack-strip { margin-bottom: 40px; padding: 16px 0; }
+    .preview-grid { margin-bottom: 48px; }
+    .project-list { margin-bottom: 48px; }
+    
+    /* Cards & Items */
+    .preview-card { padding: 20px; }
+    .project-item { padding: 24px 0; }
+    .contact-card { padding: 20px; }
+    
+    /* Floating Buttons */
     .floating-contact {
         bottom: 16px;
         right: 16px;
