@@ -589,23 +589,25 @@ footer.site span { font-family: var(--font-mono); font-size: 0.72rem; color: var
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    color: var(--text);
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    transition: transform 0.2s var(--ease-out), background 0.2s, color 0.2s;
+    color: var(--accent);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    transition: transform 0.2s var(--ease-out), filter 0.2s, color 0.2s;
 }
+
+.fab svg { width: 30px; height: 30px; }
 
 .fab:hover {
-    transform: translateY(-4px) scale(1.05);
-    background: var(--bg-3);
+    transform: translateY(-4px) scale(1.12);
+    filter: drop-shadow(0 0 10px rgba(212,168,83,0.6));
 }
 
-.email-fab:hover { color: #facc15; border-color: rgba(250, 204, 21, 0.3); }
-.wa-fab:hover { color: #25D366; border-color: rgba(37, 211, 102, 0.3); }
+.email-fab:hover { color: var(--accent); }
+.wa-fab:hover { color: #25D366; filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.5)); }
 
 /* ── MOBILE RESPONSIVENESS (Global Tweaks) ──────────────────────── */
 @media (max-width: 600px) {
