@@ -2,14 +2,14 @@
 
 Personal portfolio site for **Onunga Elly**, software developer and student based in Nairobi, Kenya. Built to present edtech and SaaS work to companies and collaborators.
 
-🔗 **Live:** [justolise.github.io/portfolio](https://justolise.github.io/portfolio)
+🔗 **Live:** [justolise.github.io/elly](https://justolise.github.io/elly)
 
 ---
 
 ## Structure
 
 ```
-portfolio/
+elly/
 ├── index.html   # Markup — pages, sections, content
 ├── styles.css   # Design tokens, layout, all component styles
 ├── main.js      # Navigation, scroll-reveal, card spotlight
